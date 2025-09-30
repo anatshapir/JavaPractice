@@ -10,11 +10,27 @@ This repository contains planning materials for an Eclipse plug-in that helps hi
 ## Starter Exercises
 
 The [`student-exercises/`](student-exercises/) folder ships three import-ready Java projects—**ConditionalsWarmup**, **ArrayLoops**, and **InheritanceQuest**—that pair with the cards surfaced in the plug-in. Each project contains starter source files, JUnit 5 tests, and a README with student/teacher notes. Import these projects alongside the plug-in to let students open the starter files directly from the **Exercise Overview** view.
-=======
-
 
 ## Eclipse Plug-in Prototype
 The `student-practice-plugin` directory contains a PDE plug-in prototype that opens an interactive "Exercise Overview" view inside the Eclipse IDE. Import it into Eclipse via *File → Import → Existing Projects into Workspace* to explore the sample exercises, review placeholder AI/test/submission actions, and evaluate the evolving student workflow.
+
+
+Exercise Overview (prototype layout)
+┌──────────────────────────────┬──────────────────────────────────────────────┐
+│ Exercise List                │ Exercise Details                            │
+│ • Conditionals Warmup        │ ┌ Instructions ───────────────────────────┐ │
+│ • Array Loops                │ │ • Read the exercise summary              │ │
+│ • Inheritance Quest          │ │ • Click “Open Starter File” to begin     │ │
+│                              │ │ • Run the matching JUnit configuration   │ │
+│ Quick Actions                │ │   shown below once you finish coding     │ │
+│ [Open Starter File]          │ └──────────────────────────────────────────┘ │
+│ [Run Provided Tests]         │ ┌ Provided Tests ─────────────────────────┐ │
+│ [Request AI Hint]            │ │ • ArrayStatsTestSuite (JUnit 5)          │ │
+│ [Submit to Classroom]        │ └──────────────────────────────────────────┘ │
+└──────────────────────────────┴──────────────────────────────────────────────┘
+```
+
+*ASCII sketch of the Exercise Overview layout showing the inline **Open Starter File** action, provided tests, and quick-action buttons.*
 
 ### Running the Prototype in Eclipse
 1. **Install the right Eclipse distribution** – download the *Eclipse IDE for RCP and RAP Developers* package so that PDE tooling is available.

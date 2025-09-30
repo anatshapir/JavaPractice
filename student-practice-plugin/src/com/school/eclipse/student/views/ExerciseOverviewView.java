@@ -103,33 +103,57 @@ public class ExerciseOverviewView extends ViewPart {
 
         Group workspaceGroup = new Group(details, SWT.NONE);
         workspaceGroup.setText("Workspace");
-        workspaceGroup.setLayout(new GridLayout(2, false));
+        workspaceGroup.setLayout(new GridLayout(3, false));
+
         workspaceGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
         new Label(workspaceGroup, SWT.NONE).setText("Project:");
         workspaceProjectLabel = new Label(workspaceGroup, SWT.NONE);
-        workspaceProjectLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
+        GridData projectData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+        projectData.horizontalSpan = 2;
+        workspaceProjectLabel.setLayoutData(projectData);
+
         workspaceProjectLabel.setText("—");
 
         new Label(workspaceGroup, SWT.NONE).setText("Starter File:");
         starterFileLabel = new Label(workspaceGroup, SWT.WRAP);
-        starterFileLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
+        GridData starterData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+        starterData.widthHint = 260;
+        starterFileLabel.setLayoutData(starterData);
         starterFileLabel.setText("—");
+
+        openStarterButton = new Button(workspaceGroup, SWT.PUSH);
+        openStarterButton.setText("Open");
+        openStarterButton.addListener(SWT.Selection, event -> {
+            if (currentExercise != null) {
+                actions.openStarterFile(workspaceGroup.getShell(), currentExercise);
+            }
+        });
 
         new Label(workspaceGroup, SWT.NONE).setText("JUnit Launcher:");
         testLauncherLabel = new Label(workspaceGroup, SWT.NONE);
-        testLauncherLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+        GridData launcherData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+        launcherData.horizontalSpan = 2;
+        testLauncherLabel.setLayoutData(launcherData);
         testLauncherLabel.setText("—");
 
-        GridLayout actionsLayout = new GridLayout(4, false);
+        Group testsGroup = new Group(details, SWT.NONE);
+        testsGroup.setText("Provided Tests");
+        testsGroup.setLayout(new GridLayout());
+        testsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+        testsList = new org.eclipse.swt.widgets.List(testsGroup, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY);
+        GridData testsData = new GridData(SWT.FILL, SWT.TOP, true, false);
+        testsData.heightHint = 80;
+        testsList.setLayoutData(testsData);
+
+        Composite actionsComposite = new Composite(details, SWT.NONE);
+        actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false));
+        GridLayout actionsLayout = new GridLayout(3, false);
         actionsLayout.marginWidth = 0;
         actionsComposite.setLayout(actionsLayout);
-
-        openStarterButton = createActionButton(actionsComposite, "Open Starter File", shell -> {
-            if (currentExercise != null) {
-                actions.openStarterFile(shell, currentExercise);
-            }
-        });
 
 
         runTestsButton = createActionButton(actionsComposite, "Run Tests", shell -> {
