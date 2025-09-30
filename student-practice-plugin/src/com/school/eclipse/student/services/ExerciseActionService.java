@@ -1,5 +1,6 @@
 package com.school.eclipse.student.services;
 
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -11,6 +12,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Shell;
 
 import com.school.eclipse.student.model.ExerciseDescriptor;
 
@@ -26,6 +29,7 @@ public class ExerciseActionService {
                         + "execute the provided suite for '%s'.\n\n" +
                         "(Prototype placeholder: wire directly into the JDT JUnit launcher.)",
                         exercise.getTestLaunchShortcut(), exercise.getTitle()));
+
     }
 
     public void openAiHelper(Shell shell, ExerciseDescriptor exercise) {
@@ -77,4 +81,5 @@ public class ExerciseActionService {
                     String.format("Unable to open %s: %s", exercise.getStarterFilePath(), e.getMessage()));
         }
     }
+
 }

@@ -41,7 +41,7 @@ public class ExerciseRepository {
                         "Import the `ArrayLoops` starter project from the `student-exercises` folder.",
                         "Implement sum, average, and max methods in `src/com/school/student/ArrayStats.java`.",
                         "Run the `ArrayStatsTestSuite` configuration to cover edge cases.",
-                        "Ask the AI helper for hints if the average calculation looks off."),
+                         "Ask the AI helper for hints if the average calculation looks off."),
                 Arrays.asList(
                         new TestDescriptor("ArrayStatsTest.java",
                                 "Validates positive, negative, and mixed number arrays."),

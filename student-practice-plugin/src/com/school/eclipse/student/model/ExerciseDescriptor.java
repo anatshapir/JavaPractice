@@ -31,6 +31,7 @@ public final class ExerciseDescriptor {
         this.projectName = Objects.requireNonNull(projectName, "projectName");
         this.starterFilePath = Objects.requireNonNull(starterFilePath, "starterFilePath");
         this.testLaunchShortcut = Objects.requireNonNull(testLaunchShortcut, "testLaunchShortcut");
+
     }
 
     public String getId() {
