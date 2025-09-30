@@ -5,7 +5,7 @@ Bundle-SymbolicName: com.school.eclipse.studentpractice;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Bundle-Activator: com.school.eclipse.student.Activator
 Bundle-Vendor: High School CS Department
-Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.ui.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: com.school.eclipse.studentpractice
 Export-Package: com.school.eclipse.student,

@@ -97,8 +97,10 @@ These modules will communicate through Eclipse extension points and shared servi
 
 The `student-practice-plugin` project now ships an interactive Exercise Overview view that demonstrates the planned workflow:
 
-* Sample exercises with metadata and step-by-step instructions loaded from an in-memory repository.
-* Quick action buttons that stub out test execution, AI-guided help, and Google Classroom submissions with informative placeholders.
-* A refreshed SWT/JFace layout that previews how students will browse assignments and understand the provided test scaffolding.
+* Sample exercises with metadata and step-by-step instructions loaded from an in-memory repository that points to starter projects.
+* Quick action buttons that open starter files, reference Run Configuration names for the bundled JUnit 5 suites, and stub out AI-guided help plus Google Classroom submissions.
+* A refreshed SWT/JFace layout that previews how students will browse assignments and understand the provided test scaffolding, complete with workspace details (project name, starter file, launcher name).
+* Import-ready Java projects in `student-exercises/` that illustrate how teachers can package assignments, including TODO-marked starter code and runnable tests.
+
 
 Use this project as the foundation for building out the Exercise Manager and wiring in automated services for testing, AI guidance, and Classroom submissions.

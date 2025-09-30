@@ -34,9 +34,14 @@ public class ExerciseOverviewView extends ViewPart {
     private Text summaryText;
     private org.eclipse.swt.widgets.List instructionsList;
     private org.eclipse.swt.widgets.List testsList;
+    private Label workspaceProjectLabel;
+    private Label starterFileLabel;
+    private Label testLauncherLabel;
     private Button runTestsButton;
     private Button aiHelperButton;
     private Button submitButton;
+    private Button openStarterButton;
+
 
     private ExerciseDescriptor currentExercise;
 
@@ -96,21 +101,36 @@ public class ExerciseOverviewView extends ViewPart {
                 SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY);
         instructionsList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-        Group testsGroup = new Group(details, SWT.NONE);
-        testsGroup.setText("Provided Tests");
-        testsGroup.setLayout(new GridLayout());
-        testsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+        Group workspaceGroup = new Group(details, SWT.NONE);
+        workspaceGroup.setText("Workspace");
+        workspaceGroup.setLayout(new GridLayout(2, false));
+        workspaceGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
-        testsList = new org.eclipse.swt.widgets.List(testsGroup, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY);
-        GridData testsData = new GridData(SWT.FILL, SWT.TOP, true, false);
-        testsData.heightHint = 80;
-        testsList.setLayoutData(testsData);
+        new Label(workspaceGroup, SWT.NONE).setText("Project:");
+        workspaceProjectLabel = new Label(workspaceGroup, SWT.NONE);
+        workspaceProjectLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+        workspaceProjectLabel.setText("—");
 
-        Composite actionsComposite = new Composite(details, SWT.NONE);
-        actionsComposite.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false));
-        GridLayout actionsLayout = new GridLayout(3, false);
+        new Label(workspaceGroup, SWT.NONE).setText("Starter File:");
+        starterFileLabel = new Label(workspaceGroup, SWT.WRAP);
+        starterFileLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+        starterFileLabel.setText("—");
+
+        new Label(workspaceGroup, SWT.NONE).setText("JUnit Launcher:");
+        testLauncherLabel = new Label(workspaceGroup, SWT.NONE);
+        testLauncherLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+        testLauncherLabel.setText("—");
+
+        GridLayout actionsLayout = new GridLayout(4, false);
         actionsLayout.marginWidth = 0;
         actionsComposite.setLayout(actionsLayout);
+
+        openStarterButton = createActionButton(actionsComposite, "Open Starter File", shell -> {
+            if (currentExercise != null) {
+                actions.openStarterFile(shell, currentExercise);
+            }
+        });
+
 
         runTestsButton = createActionButton(actionsComposite, "Run Tests", shell -> {
             if (currentExercise != null) {
@@ -159,6 +179,9 @@ public class ExerciseOverviewView extends ViewPart {
             summaryText.setText("");
             instructionsList.removeAll();
             testsList.removeAll();
+            workspaceProjectLabel.setText("—");
+            starterFileLabel.setText("—");
+            testLauncherLabel.setText("—");
         } else {
             exerciseTitle.setText(String.format("%s (%s)", exercise.getTitle(), exercise.getDifficulty()));
             summaryText.setText(exercise.getSummary());
@@ -168,6 +191,11 @@ public class ExerciseOverviewView extends ViewPart {
             for (String instruction : exercise.getInstructions()) {
                 instructionsList.add(String.format("%d. %s", stepNumber++, instruction));
             }
+
+            workspaceProjectLabel.setText(exercise.getProjectName());
+            starterFileLabel.setText(exercise.getStarterFilePath());
+            testLauncherLabel.setText(exercise.getTestLaunchShortcut());
+
 
             testsList.removeAll();
             for (TestDescriptor test : exercise.getTests()) {
@@ -182,6 +210,8 @@ public class ExerciseOverviewView extends ViewPart {
         runTestsButton.setEnabled(enabled);
         aiHelperButton.setEnabled(enabled);
         submitButton.setEnabled(enabled);
+        openStarterButton.setEnabled(enabled);
+
     }
 
     @Override
