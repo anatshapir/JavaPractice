@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ArrayStatsTest {
+public class ArrayStatsTest {
+
 
     private final ArrayStats stats = new ArrayStats();
 

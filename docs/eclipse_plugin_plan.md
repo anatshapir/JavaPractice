@@ -102,5 +102,4 @@ The `student-practice-plugin` project now ships an interactive Exercise Overview
 * A refreshed SWT/JFace layout that previews how students will browse assignments and understand the provided test scaffolding, complete with workspace details (project name, starter file, launcher name).
 * Import-ready Java projects in `student-exercises/` that illustrate how teachers can package assignments, including TODO-marked starter code and runnable tests.
 
-
 Use this project as the foundation for building out the Exercise Manager and wiring in automated services for testing, AI guidance, and Classroom submissions.
