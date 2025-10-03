@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class ArrayStatsTest {
 
+
     private final ArrayStats stats = new ArrayStats();
 
     @Test

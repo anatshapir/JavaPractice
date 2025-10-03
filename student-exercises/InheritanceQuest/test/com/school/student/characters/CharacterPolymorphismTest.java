@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class CharacterPolymorphismTest {
 
+
     @Test
     @DisplayName("receiveDamage() never drops below zero health")
     void characterDoesNotGoNegative() {

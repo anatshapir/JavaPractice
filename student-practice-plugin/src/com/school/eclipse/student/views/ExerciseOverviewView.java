@@ -42,6 +42,7 @@ public class ExerciseOverviewView extends ViewPart {
     private Button submitButton;
     private Button openStarterButton;
 
+
     private ExerciseDescriptor currentExercise;
 
     @Override
@@ -103,17 +104,21 @@ public class ExerciseOverviewView extends ViewPart {
         Group workspaceGroup = new Group(details, SWT.NONE);
         workspaceGroup.setText("Workspace");
         workspaceGroup.setLayout(new GridLayout(3, false));
+
         workspaceGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
         new Label(workspaceGroup, SWT.NONE).setText("Project:");
         workspaceProjectLabel = new Label(workspaceGroup, SWT.NONE);
+
         GridData projectData = new GridData(SWT.FILL, SWT.CENTER, true, false);
         projectData.horizontalSpan = 2;
         workspaceProjectLabel.setLayoutData(projectData);
+
         workspaceProjectLabel.setText("—");
 
         new Label(workspaceGroup, SWT.NONE).setText("Starter File:");
         starterFileLabel = new Label(workspaceGroup, SWT.WRAP);
+
         GridData starterData = new GridData(SWT.FILL, SWT.CENTER, true, false);
         starterData.widthHint = 260;
         starterFileLabel.setLayoutData(starterData);
@@ -149,6 +154,7 @@ public class ExerciseOverviewView extends ViewPart {
         GridLayout actionsLayout = new GridLayout(3, false);
         actionsLayout.marginWidth = 0;
         actionsComposite.setLayout(actionsLayout);
+
 
         runTestsButton = createActionButton(actionsComposite, "Run Tests", shell -> {
             if (currentExercise != null) {
@@ -214,6 +220,7 @@ public class ExerciseOverviewView extends ViewPart {
             starterFileLabel.setText(exercise.getStarterFilePath());
             testLauncherLabel.setText(exercise.getTestLaunchShortcut());
 
+
             testsList.removeAll();
             for (TestDescriptor test : exercise.getTests()) {
                 testsList.add(String.format("%s — %s", test.getName(), test.getDescription()));
@@ -228,6 +235,7 @@ public class ExerciseOverviewView extends ViewPart {
         aiHelperButton.setEnabled(enabled);
         submitButton.setEnabled(enabled);
         openStarterButton.setEnabled(enabled);
+
     }
 
     @Override
